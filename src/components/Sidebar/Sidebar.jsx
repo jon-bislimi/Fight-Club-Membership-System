@@ -31,62 +31,66 @@ const Sidebar = ({ isOpen }) => {
   return (
     <>
       <aside
-        className={`bg-white text-black h-screen p-4 transition-all duration-300 shadow-md border-r border-gray-200 ${
-          isOpen ? "w-64" : "w-16"
-        }`}
+        className={`bg-white text-black h-screen transition-all duration-300 shadow-md border-r border-gray-200 ${
+          isOpen ? "w-48 sm:w-64" : "w-14 sm:w-16"
+        } flex flex-col`}
       >
-        <div className="flex flex-col md:flex-row items-center gap-3 mb-8">
+        {/* LOGO HEADER */}
+        <div
+          className={`flex items-center justify-center transition-all duration-300 ${
+            isOpen ? "py-0 px-0" : "py-8 px-0"
+          }`}
+        >
           <Image
-            src="/download (4).png"
-            alt="CellActive"
-            width={64} // gjërësia fikse
-            height={56} // lartësia fikse
-            className="object-contain"
+            src="/CellActive.png"
+            alt="CellActive Logo"
+            width={isOpen ? 140 : 60}
+            height={isOpen ? 90 : 60}
+            className={`object-contain transition-all duration-300 ${
+              isOpen ? "w-full max-w-sm" : "w-full"
+            }`}
+            priority
           />
-
-          {isOpen && (
-            <span className="text-xl font-bold tracking-wide font-sans">
-              CellActive
-            </span>
-          )}
         </div>
 
-        <SidebarItem
-          icon={<FaTachometerAlt />}
-          title="Dashboard"
-          link="/"
-          isOpen={isOpen}
-        />
+        <div className="flex-1 overflow-y-auto px-2 sm:px-4 pt-0">
+          <SidebarItem
+            icon={<FaTachometerAlt />}
+            title="Dashboard"
+            link="/"
+            isOpen={isOpen}
+          />
 
-        <SidebarDropdown
-          isOpen={isOpen}
-          icon={<GiBoxingGlove />}
-          title="Sports"
-          items={[
-            { type: "link", label: "List of Sports", href: "/sports" },
-            { type: "action", label: "+ Add New", onClick: handleAddSport },
-          ]}
-        />
+          <SidebarDropdown
+            isOpen={isOpen}
+            icon={<GiBoxingGlove />}
+            title="Sports"
+            items={[
+              { type: "link", label: "List of Sports", href: "/sports" },
+              { type: "action", label: "+ Add New", onClick: handleAddSport },
+            ]}
+          />
 
-        <SidebarDropdown
-          icon={<GiWeightLiftingUp />}
-          title="Trainers"
-          isOpen={isOpen}
-          items={[
-            { type: "link", label: "List of Trainers", href: "/trainers" },
-            { type: "action", label: "+ Add New", onClick: handleAddTrainer },
-          ]}
-        />
+          <SidebarDropdown
+            icon={<GiWeightLiftingUp />}
+            title="Trainers"
+            isOpen={isOpen}
+            items={[
+              { type: "link", label: "List of Trainers", href: "/trainers" },
+              { type: "action", label: "+ Add New", onClick: handleAddTrainer },
+            ]}
+          />
 
-        <SidebarDropdown
-          icon={<FaUsers />}
-          title="Members"
-          isOpen={isOpen}
-          items={[
-            { type: "link", label: "List of Members", href: "/members" },
-            { type: "action", label: "+ Add New", onClick: handleAddMember },
-          ]}
-        />
+          <SidebarDropdown
+            icon={<FaUsers />}
+            title="Members"
+            isOpen={isOpen}
+            items={[
+              { type: "link", label: "List of Members", href: "/members" },
+              { type: "action", label: "+ Add New", onClick: handleAddMember },
+            ]}
+          />
+        </div>
       </aside>
 
       {/* Modals */}
